@@ -13,7 +13,7 @@ Nombre: <input type="text" name="nombre">
 <br><br>
 Apellido: <input type="text" name="apellido">
 <br><br>
-Correo: <input type="text" name="correo">
+Correo: <input type="email" name="correo">
 <br><br>
 Telefono: <input type="text" name="telefono">
 <br><br>
@@ -25,13 +25,22 @@ Cédula: <input type="text" name="cedula">
 
 <?php
 function hola()
-{
-echo $_POST['nombre'];
-echo $_POST['apellido'];
-echo $_POST['correo'];
-echo $_POST['telefono'];
-echo $_POST['cedula'];
-};
+	{
+		if (!empty($_POST['nombre'])&&!empty($_POST['apellido'])&&!empty($_POST['correo'])&&!empty($_POST['telefono'])&&!empty($_POST['cedula']))
+		{
+			echo $_POST['nombre'];
+			echo $_POST['apellido'];
+			echo $_POST['correo'];
+			echo $_POST['telefono'];
+			echo $_POST['cedula'];
+		}else{ 
+     				echo '<br>';
+					echo 'Todos los campos son obligatorios';
+					//date_default_timezone_set('UTC');
+					$fecha = date("d").date("m").date("Y");
+					echo $fecha;
+     		}
+	};
 ?>
 
 <b> <?php hola(); ?> </b>
