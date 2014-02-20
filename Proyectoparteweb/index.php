@@ -8,7 +8,7 @@
 	<center>
 		<p>Todos los campos son obligatorios</p>
 
-<form  method="POST" name="formulario">
+<form  method="POST" name="formulario" action="index.php">
 Nombre: <input type="text" name="nombre">
 <br><br>
 Apellido: <input type="text" name="apellido">
@@ -21,29 +21,33 @@ Cédula: <input type="text" name="cedula">
 <br><br>
 <input name="reset" value="Borrar datos" type="reset">
 
-<input name="submit" value="Enviar datos" type="submit"  onclick='<?php hola(); ?>'>
+<input name="submit" value="Enviar" type="submit">
 
 <?php
-function hola()
-	{
+
 		if (!empty($_POST['nombre'])&&!empty($_POST['apellido'])&&!empty($_POST['correo'])&&!empty($_POST['telefono'])&&!empty($_POST['cedula']))
-		{
-			echo $_POST['nombre'];
-			echo $_POST['apellido'];
-			echo $_POST['correo'];
-			echo $_POST['telefono'];
-			echo $_POST['cedula'];
+		{			 
+			 hola();
+			         echo '<br>';
+					echo '<h1> Sus datos han sido agregados <h1>'; 
 		}else{ 
      				echo '<br>';
-					echo 'Todos los campos son obligatorios';
-					//date_default_timezone_set('UTC');
-					$fecha = date("d").date("m").date("Y");
-					echo $fecha;
-     		}
+					echo 'Todos los campos son obligatorios';    		
 	};
+
+
+	function hola(){
+	date_default_timezone_set("America/Costa_Rica");			
+			$fecha = date("d").date("m").date("Y");
+            $file = fopen($fecha.".csv","a");
+	        fwrite($file,$_POST['nombre'].";".$_POST['apellido'].";".$_POST['correo'].";".$_POST['telefono'].";".$_POST['cedula']."\n");
+	        fclose($file); 
+
+	}
+
 ?>
 
-<b> <?php hola(); ?> </b>
+
 
 </form>
 </center>
