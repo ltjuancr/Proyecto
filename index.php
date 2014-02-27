@@ -3,10 +3,21 @@ date_default_timezone_set("America/Costa_Rica");
 $fecha = date("d").date("m").date("Y");
 
 $ruta = "C:\\xampp\\htdocs\\Proyectoparteweb\\".$fecha.'.csv';
-echo $ruta;
+
+$str_datos = file_get_contents("datos.json");
+$datos = json_decode($str_datos,true);
+
+$ip= $datos["BD"]["ip"];
+$user=$datos["BD"]["usuario"];
+$clave=$datos["BD"]["contrasena"];
+$emisor=$datos["correo"]["cuentaemisor"];
+$clavee=$datos["correo"]["contrasena"];
+$host=$datos["correo"]["servidor"];
+$receptor=$datos["correo"]["cuentareceptor"];
 
 
-echo "\n";
+
+//echo "\n";
 $fila = "";
 $celdas = "";
 $cont=0;
@@ -25,15 +36,15 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
         }
         $fila = substr($fila, 0, -1);
          $cont=$cont+1;
-        $conect = mysql_connect('127.0.0.1', 'root', '')
+        $conect = mysql_connect($ip,$user,$clave)
         or die('No se pudo conectar: ' . mysql_error());
         mysql_select_db('proyecto') or die('No se pudo seleccionar la base de datos');
 
         // Realizar una consulta MySQL
-        echo $celdas."\n";
-        echo $fila."\n";
+       // echo $celdas."\n";
+        //echo $fila."\n";
         $centencia = 'INSERT INTO estudiantes (nombre,apellido,correo,telefono,cedula) VALUES ('.$fila.');';
-        echo $centencia."\n";
+        //echo $centencia."\n";
 
         $result = mysql_query($centencia) or die('Consulta fallida: ' . mysql_error());
         // Cerrar la conexión
@@ -43,35 +54,36 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
 
     }
     fclose($gestor); //Se cierra la conexión
-    echo "\n";
-    include("class.phpmailer.php"); 
- include("class.smtp.php"); 
- $mail = new PHPMailer(); 
- $mail->IsSMTP(); 
- $mail->SMTPAuth = true; 
- $mail->SMTPSecure = "ssl"; 
- $mail->Host = "smtp.gmail.com"; 
- $mail->Port = 465; 
- $mail->Username = "juanquirosgonzalez@gmail.com"; 
- $mail->Password = "juan1243";
+    //echo "\n";
+
+     include("class.phpmailer.php"); 
+     include("class.smtp.php"); 
+     $mail = new PHPMailer(); 
+     $mail->IsSMTP(); 
+     $mail->SMTPAuth = true; 
+     $mail->SMTPSecure = "ssl"; 
+     $mail->Host = $host; 
+     $mail->Port = 465; 
+     $mail->Username = $emisor; 
+     $mail->Password = $clavee;
 
 
 
-  $mail->From = "juanquirosgonzalez@gmail.com"; 
- $mail->FromName = "Server"; 
- $mail->Subject = "Request del dia"; 
- $mail->AltBody = "Este es un mensaje."; 
- $mail->MsgHTML("<b>Cantidad de Alumnos insertados  :".$cont."</b>."); 
- $mail->AddAttachment("files/files.zip"); 
- $mail->AddAttachment("files/img03.jpg"); 
- $mail->AddAddress("juan_gonzalez93@hotmail.com", "juan quiros gonzalez"); 
- $mail->IsHTML(true); 
+     $mail->From = $emisor; 
+     $mail->FromName = "Server"; 
+     $mail->Subject = "Request del dia"; 
+     $mail->AltBody = "Este es un mensaje"; 
+     $mail->MsgHTML("<b>Cantidad de Alumnos insertados  :".$cont."</b>"); 
+     $mail->AddAttachment(""); 
+     $mail->AddAttachment(""); 
+     $mail->AddAddress($receptor, "juan quiros gonzalez"); 
+     $mail->IsHTML(true); 
+
   if(!$mail->Send()) { 
  echo "Error: " . $mail->ErrorInfo; 
  } else { 
  echo "Mensaje enviado correctamente"; 
  }
 }
-
 
 ?>
