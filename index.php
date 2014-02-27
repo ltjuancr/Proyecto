@@ -1,29 +1,20 @@
 <?php
-date_default_timezone_set("America/Costa_Rica");			
+date_default_timezone_set("America/Costa_Rica");      
 $fecha = date("d").date("m").date("Y");
 
-$ruta = 'C:\xampp\htdocs\Proyectoparteweb'."&#92;".$fecha.'.csv';
+$ruta = "C:\\xampp\\htdocs\\Proyectoparteweb\\".$fecha.'.csv';
 echo $ruta;
+
 
 echo "\n";
 $fila = "";
 $celdas = "";
+$cont=0;
 $first_line = true;
 $columns_name = array();
 if (($gestor = fopen($ruta, "r")) !== FALSE) {
     while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) { //examina la línea que lee para tratar campos en formato CSV y devuelve una matriz que contiene el campo leído.
         
-       // if($first_line){
-          //  $columns_name = $datos;
-          //  $first_line = false;
-          //  foreach ($datos as $row) {
-          //      $celdas .= "`".$row."`".",";
-          //  }
-            //$numero = strlen($celdas);
-          //  $celdas = substr($celdas, 0, -1);
-          //  echo $celdas;
-          //  continue;
-       // }
 
         $numero = count($datos);
         //echo "Fila $fila: \n";
@@ -33,7 +24,7 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
 
         }
         $fila = substr($fila, 0, -1);
-
+         $cont=$cont+1;
         $conect = mysql_connect('127.0.0.1', 'root', '')
         or die('No se pudo conectar: ' . mysql_error());
         mysql_select_db('proyecto') or die('No se pudo seleccionar la base de datos');
@@ -53,6 +44,33 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
     }
     fclose($gestor); //Se cierra la conexión
     echo "\n";
+    include("class.phpmailer.php"); 
+ include("class.smtp.php"); 
+ $mail = new PHPMailer(); 
+ $mail->IsSMTP(); 
+ $mail->SMTPAuth = true; 
+ $mail->SMTPSecure = "ssl"; 
+ $mail->Host = "smtp.gmail.com"; 
+ $mail->Port = 465; 
+ $mail->Username = "juanquirosgonzalez@gmail.com"; 
+ $mail->Password = "juan1243";
+
+
+
+  $mail->From = "juanquirosgonzalez@gmail.com"; 
+ $mail->FromName = "Server"; 
+ $mail->Subject = "Request del dia"; 
+ $mail->AltBody = "Este es un mensaje."; 
+ $mail->MsgHTML("<b>Cantidad de Alumnos insertados  :".$cont."</b>."); 
+ $mail->AddAttachment("files/files.zip"); 
+ $mail->AddAttachment("files/img03.jpg"); 
+ $mail->AddAddress("juan_gonzalez93@hotmail.com", "juan quiros gonzalez"); 
+ $mail->IsHTML(true); 
+  if(!$mail->Send()) { 
+ echo "Error: " . $mail->ErrorInfo; 
+ } else { 
+ echo "Mensaje enviado correctamente"; 
+ }
 }
 
 
