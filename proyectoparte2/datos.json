@@ -1,0 +1,16 @@
+{
+"BD":
+    {
+    "ip":"127.0.0.1",
+    "usuario":"root",
+    "contrasena":""
+    },
+"correo":
+    {
+    "cuentaemisor":"juanquirosgonzalez@gmail.com",
+    "contrasena":"juan1243",
+    "servidor":"smtp.gmail.com",
+    "cuentareceptor":"juan_gonzalez93@hotmail.com"
+    }
+
+}

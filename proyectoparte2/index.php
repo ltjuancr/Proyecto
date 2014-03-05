@@ -4,7 +4,9 @@ $fecha = date("d").date("m").date("Y");
 
 $ruta = "C:\\xampp\\htdocs\\Proyectoparteweb\\".$fecha.'.csv';
 
-$str_datos = file_get_contents("datos.json");
+$json = $_SERVER['argv'][1];
+
+$str_datos = file_get_contents($json);
 $datos = json_decode($str_datos,true);
 
 $ip= $datos["BD"]["ip"];
@@ -36,9 +38,8 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
         }
         $fila = substr($fila, 0, -1);
          $cont=$cont+1;
-        $conect = mysql_connect($ip,$user,$clave)
-        or die('No se pudo conectar: ' . mysql_error());
-        mysql_select_db('proyecto') or die('No se pudo seleccionar la base de datos');
+        $conect = mysqli_connect($ip,$user,$clave,'proyecto')
+        or die('No se pudo conectar: ' . mysqli_error());
 
         // Realizar una consulta MySQL
        // echo $celdas."\n";
@@ -46,9 +47,9 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
         $centencia = 'INSERT INTO estudiantes (nombre,apellido,correo,telefono,cedula) VALUES ('.$fila.');';
         //echo $centencia."\n";
 
-        $result = mysql_query($centencia) or die('Consulta fallida: ' . mysql_error());
+        $result = mysqli_query( $conect,$centencia) or die('Consulta fallida: ' . mysqli_error());
         // Cerrar la conexión
-        mysql_close($conect);
+        mysqli_close($conect);
         //echo $centencia;
         $fila = "";
 
