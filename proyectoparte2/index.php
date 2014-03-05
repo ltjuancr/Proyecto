@@ -2,6 +2,15 @@
 date_default_timezone_set("America/Costa_Rica");      
 $fecha = date("d").date("m").date("Y");
 
+$mensaje ='<table>
+                <tr>
+                     <td>Nombre</td>
+                     <td>Apellido</td>
+                     <td>Correo</td>
+                     <td>Telefono</td>
+                     <td>Cedula</td>
+                </tr>';
+
 $ruta = "C:\\xampp\\htdocs\\Proyectoparteweb\\".$fecha.'.csv';
 
 $json = $_SERVER['argv'][1];
@@ -29,12 +38,18 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
     while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) { //examina la línea que lee para tratar campos en formato CSV y devuelve una matriz que contiene el campo leído.
         
 
-        $numero = count($datos);
+        //$numero = count($datos);
         //echo "Fila $fila: \n";
         //$fila++;
+         $mensaje.=' <tr>
+                             <td>'.$datos[0].'</td>
+                             <td>'.$datos[1].'</td>
+                             <td>'.$datos[2].'</td>
+                             <td>'.$datos[3].'</td>
+                             <td>'.$datos[4].'</td>
+                     </tr>';
         foreach ($datos as $row) {
             $fila .= "'".$row."'".",";
-
         }
         $fila = substr($fila, 0, -1);
          $cont=$cont+1;
@@ -54,6 +69,7 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
         $fila = "";
 
     }
+    $mensaje.='</table>';
     fclose($gestor); //Se cierra la conexión
     //echo "\n";
 
@@ -74,7 +90,7 @@ if (($gestor = fopen($ruta, "r")) !== FALSE) {
      $mail->FromName = "Server"; 
      $mail->Subject = "Request del dia"; 
      $mail->AltBody = "Este es un mensaje"; 
-     $mail->MsgHTML("<b>Cantidad de Alumnos insertados  :".$cont."</b>"); 
+     $mail->MsgHTML("<b>Cantidad de Alumnos insertados  :".$cont."</b><br> ".$mensaje); 
      $mail->AddAttachment(""); 
      $mail->AddAttachment(""); 
      $mail->AddAddress($receptor, "juan quiros gonzalez"); 
