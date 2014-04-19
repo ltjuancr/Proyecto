@@ -75,12 +75,8 @@
 			<div>
 			<h2><?php echo $entry['id_post'] ?> </h2>	
 			<p>
-				<a href=""><?php echo $entry['post'] ?> </a> 
+				<a href="http://localhost/proyectofinal/index.php/Post/index/<?php echo $entry['id_post'] ?>"><?php echo $entry['post'] ?> </a> 
 			</p>
-
-            Nombre: <input type="text" name="nombre">
-            Comentario: <input type="text" name="comentario">
-
 			</div>
 		<?php endforeach; ?>
 		
@@ -97,6 +93,12 @@
 			<a href="<?php echo  $user->red1; ?>">Facebook </a>
 			<br>
 			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
+			<br>
+
+			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/login">
+            <input name="submit" value="Ingresar" type="submit">
+           </form>
+
 		</div>	
 	</div>
 </div>

@@ -67,52 +67,37 @@
 <body>
 
 <div id="container" style="height: 800px;">
-<center>
-	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
-</center>
-	<div id="body" style="float: left; height: 800px; ">
-		
-			<div>	
-			<p>
-				<?php echo $post->post ?>
-			</p>
-      <form method="POST" name="formulario" action="<?php echo base_url();?>index.php/Post/insert/<?php echo $id;?>">
-            Nombre: <input type="text" name="nombre" id="nombre">
-            Comentario: <input type="text" name="comentario" id="comentario">
 
-            <input name="submit" value="Commentar" type="submit">
+		<center>
+			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/EdicionCuenta/editar">
+
+            Nombre de Usuario: <input type="text" name="nombre" value="<?php echo  $user->nombre; ?>">
             <br>
-      </form>       
-           	<div id="body" style="float: left; height: 800px; ">
-		<?php foreach ($comentarios as $key => $entry) : ?>
-			<div>
-			
-			
-           <h4>Nombre: </h4>   <?php echo $entry['nombre'] ?>
-          <h4>Comentario: </h4>   <?php echo $entry['comentario'] ?>
+            Apellidos del Usuario: <input type="text" name="apellidos" value="<?php echo  $user->apellidos; ?>">
+            <br>
+            Clave de Usuario: <input type="password" name="clave" value="<?php echo  $user->clave; ?>">
+            <br>
+            Descripcion del Usuario:
+            <br>
+            <textarea name="descripcion" rows="10" cols="40"><?php echo  $user->descripcion; ?></textarea>
+            
+            <br>           
+            Nombre del Blog: <input type="text" name="nombre_blog" value="<?php echo  $user->nombre_blog; ?>">
+            <br>
+             Redes Sociales: 
+             <br>
+             <input type="text" name="red1" value="<?php echo  $user->red1; ?>">
+             <br>
+             <input type="text" name="red2" value="<?php echo  $user->red2; ?>">
+             <br>
+            <input name="submit" value="Agregar Cambios" type="submit">
+           </form>
 
-			</div>
-		<?php endforeach; ?>
-		
-			</div>
-			</div>
+           </center>
 
 		
-	</div>
-	<div id="sidebar" style="float: right; border:1px solid #A4A4A4; width: 200px; height: 500px; ">
-		<div>
-			<center>
-			<h1>Autor</h1>
-			</center>
-			<?php echo  $user->nombre.' '.$user->apellidos; ?>
-			<br>
-			<?php echo  $user->descripcion; ?>
-			<br>
-			<a href="<?php echo  $user->red1; ?>">Facebook </a>
-			<br>
-			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
-		</div>	
-	</div>
+	
+
 </div>
 
 </body>

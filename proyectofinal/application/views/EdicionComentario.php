@@ -68,51 +68,32 @@
 
 <div id="container" style="height: 800px;">
 <center>
-	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
-</center>
-	<div id="body" style="float: left; height: 800px; ">
-		
-			<div>	
-			<p>
-				<?php echo $post->post ?>
-			</p>
-      <form method="POST" name="formulario" action="<?php echo base_url();?>index.php/Post/insert/<?php echo $id;?>">
-            Nombre: <input type="text" name="nombre" id="nombre">
-            Comentario: <input type="text" name="comentario" id="comentario">
 
-            <input name="submit" value="Commentar" type="submit">
-            <br>
-      </form>       
-           	<div id="body" style="float: left; height: 800px; ">
-		<?php foreach ($comentarios as $key => $entry) : ?>
+            <?php foreach ($comentarios as $key => $entry) : ?>
 			<div>
-			
-			
-           <h4>Nombre: </h4>   <?php echo $entry['nombre'] ?>
-          <h4>Comentario: </h4>   <?php echo $entry['comentario'] ?>
+			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/EdicionComentarios/Editando/<?php echo $id_post?>">
+				<br>
+				Numero de comentario:<input type="text" name="id" value="<?php echo $entry['id_comentario'] ?> " readonly = "readonly">
+				<br>
+				Nombre: <input type="text" name="fecha" value="<?php echo $entry['nombre'] ?> " readonly = "readonly">
+				<br>
+                Comentario:
+                <br>
+                  <textarea name="comentario" rows="10" cols="40" readonly = "readonly"><?php echo $entry['comentario'] ?></textarea>
+                <br>
+             <?php 
+             if( $entry['estado'] == 's'){
+             	echo '<input name="submit" value="Activado" type="submit">';
+             }else{
+                 echo '<input name="submit" value="Desactivado" type="submit">';
 
+             }
+              ?>
+            <br>
+              </form>
 			</div>
-		<?php endforeach; ?>
-		
-			</div>
-			</div>
-
-		
-	</div>
-	<div id="sidebar" style="float: right; border:1px solid #A4A4A4; width: 200px; height: 500px; ">
-		<div>
-			<center>
-			<h1>Autor</h1>
-			</center>
-			<?php echo  $user->nombre.' '.$user->apellidos; ?>
-			<br>
-			<?php echo  $user->descripcion; ?>
-			<br>
-			<a href="<?php echo  $user->red1; ?>">Facebook </a>
-			<br>
-			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
-		</div>	
-	</div>
+		    <?php endforeach; ?>		
+	</center>
 </div>
 
 </body>

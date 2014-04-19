@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to my blog</title>
+	<title>Agregando Post</title>
 
 	<style type="text/css">
 
@@ -63,56 +63,33 @@
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
 	</style>
+
+	
 </head>
 <body>
 
 <div id="container" style="height: 800px;">
+
+	
+
 <center>
-	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
-</center>
-	<div id="body" style="float: left; height: 800px; ">
-		
-			<div>	
-			<p>
-				<?php echo $post->post ?>
-			</p>
-      <form method="POST" name="formulario" action="<?php echo base_url();?>index.php/Post/insert/<?php echo $id;?>">
-            Nombre: <input type="text" name="nombre" id="nombre">
-            Comentario: <input type="text" name="comentario" id="comentario">
+			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/EdicionPost/Agregar">
 
-            <input name="submit" value="Commentar" type="submit">
+            Post: 
             <br>
-      </form>       
-           	<div id="body" style="float: left; height: 800px; ">
-		<?php foreach ($comentarios as $key => $entry) : ?>
-			<div>
-			
-			
-           <h4>Nombre: </h4>   <?php echo $entry['nombre'] ?>
-          <h4>Comentario: </h4>   <?php echo $entry['comentario'] ?>
+            <textarea name="post" rows="10" cols="40"> Ingrese su Post Aqui</textarea>
+            <br>
 
-			</div>
-		<?php endforeach; ?>
+            Fecha: <input type="text" name="fecha" value="<?php date_default_timezone_set("America/Costa_Rica");      
+            $fecha = date("Y").'-'.date("m").'-'.date("d");  echo  $fecha; ?> " readonly = "readonly">
+            <br>
+            <input name="submit" value="Agregar Post" type="submit">
+            <br>
+           </form>
+</center>
 		
-			</div>
-			</div>
+	
 
-		
-	</div>
-	<div id="sidebar" style="float: right; border:1px solid #A4A4A4; width: 200px; height: 500px; ">
-		<div>
-			<center>
-			<h1>Autor</h1>
-			</center>
-			<?php echo  $user->nombre.' '.$user->apellidos; ?>
-			<br>
-			<?php echo  $user->descripcion; ?>
-			<br>
-			<a href="<?php echo  $user->red1; ?>">Facebook </a>
-			<br>
-			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
-		</div>	
-	</div>
 </div>
 
 </body>

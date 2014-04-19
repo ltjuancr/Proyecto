@@ -70,50 +70,19 @@
 <center>
 	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
 </center>
-	<div id="body" style="float: left; height: 800px; ">
-		
-			<div>	
-			<p>
-				<?php echo $post->post ?>
-			</p>
-      <form method="POST" name="formulario" action="<?php echo base_url();?>index.php/Post/insert/<?php echo $id;?>">
-            Nombre: <input type="text" name="nombre" id="nombre">
-            Comentario: <input type="text" name="comentario" id="comentario">
 
-            <input name="submit" value="Commentar" type="submit">
-            <br>
-      </form>       
-           	<div id="body" style="float: left; height: 800px; ">
-		<?php foreach ($comentarios as $key => $entry) : ?>
-			<div>
-			
-			
-           <h4>Nombre: </h4>   <?php echo $entry['nombre'] ?>
-          <h4>Comentario: </h4>   <?php echo $entry['comentario'] ?>
+<form  method="POST" name="formulario" action="<?php echo base_url();?>index.php/login/authenticate">
+             <?php if($mensaje == 'Error'){
+                echo '<h1>'.$mensaje.' ... Usuario o Contraseña incorrecta</h1>';
+             }
+             ?>
 
-			</div>
-		<?php endforeach; ?>
-		
-			</div>
-			</div>
+                Nombre: <input type="text" name="nombre" id="nombre">
+            Contraseña: <input type="password" name="clave" id="clave">
+            <input name="reset" value="Linpiar" type="reset">
+            <input name="submit" value="Ingresar" type="submit">
 
-		
-	</div>
-	<div id="sidebar" style="float: right; border:1px solid #A4A4A4; width: 200px; height: 500px; ">
-		<div>
-			<center>
-			<h1>Autor</h1>
-			</center>
-			<?php echo  $user->nombre.' '.$user->apellidos; ?>
-			<br>
-			<?php echo  $user->descripcion; ?>
-			<br>
-			<a href="<?php echo  $user->red1; ?>">Facebook </a>
-			<br>
-			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
-		</div>	
-	</div>
-</div>
+</form>
 
 </body>
 </html>

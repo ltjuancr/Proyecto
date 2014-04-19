@@ -20,8 +20,24 @@ class Entries extends CI_Model {
     {       
         
         $query = $this->db->get('user');
+        return $query->row();          
+    }
+
+        function getpost($id_post)
+    {       
+
+       $consulta='SELECT * FROM `post` WHERE id_post ='.$id_post;
+        $query = $this->db->query("$consulta");
         return $query->row();
            
+    }
+
+    function getcomment($id_post){
+        $consulta="SELECT * FROM `comentarios` WHERE id_post = ".$id_post." and estado = 's'";
+
+        $query = $this->db->query("$consulta");
+        return $query->result_array();
+
     }
 
 
