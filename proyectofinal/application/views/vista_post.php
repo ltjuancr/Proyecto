@@ -10,12 +10,10 @@
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+	body
+{
+background-color:#d0e4fe;
+}
 
 	a {
 		color: #003399;
@@ -66,10 +64,31 @@
 </head>
 <body>
   <a href="<?php echo base_url();?>">Atras</a>
+
+
 <div id="container" style="height: 800px;">
 <center>
 	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
 </center>
+  <div id="sidebar" >
+			<center>
+			<h1>Autor</h1>	
+			</center>		
+		<?php echo  $user->nombre.' '.$user->apellidos; ?>
+			<br>
+		<?php echo  $user->descripcion; ?>
+			<br>
+			<a href="<?php echo  $user->red1; ?>">Facebook </a>
+			<br>
+			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
+			<br>
+
+			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/login">
+            <input name="submit" value="Ingresar" type="submit">
+           </form>
+
+		</div>	
+<h1></h1>
 	<div id="body" style="float: left; height: 800px; ">
 		
 			<div>	
@@ -99,20 +118,7 @@
 
 		
 	</div>
-	<div id="sidebar" style="float: right; border:1px solid #A4A4A4; width: 200px; height: 500px; ">
-		<div>
-			<center>
-			<h1>Autor</h1>
-			</center>
-			<?php echo  $user->nombre.' '.$user->apellidos; ?>
-			<br>
-			<?php echo  $user->descripcion; ?>
-			<br>
-			<a href="<?php echo  $user->red1; ?>">Facebook </a>
-			<br>
-			<a href="<?php echo  $user->red2; ?>"> Twitter </a>
-		</div>	
-	</div>
+		
 </div>
 
 </body>

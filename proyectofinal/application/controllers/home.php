@@ -24,6 +24,10 @@ class Home extends CI_Controller {
 		$this->load->view('home_index', $data);
 	}
 
+
+
+
+
 	public function error() 
 	{
 		echo "Error 404, try again later";

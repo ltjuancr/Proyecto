@@ -32,6 +32,17 @@ class Login_model extends CI_Model {
         $this->db->update('user', $data);     
     }
 
+         function log($nombre)
+    {    
+
+           $data = array(
+            'estado' => '0'
+        );
+
+        $this->db->where('nombre', $nombre);
+        $this->db->update('user', $data);     
+    }
+
 }
 
 

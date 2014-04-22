@@ -10,12 +10,10 @@
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+body
+{
+background-color:#d0e4fe;
+}
 
 	a {
 		color: #003399;
@@ -64,6 +62,7 @@
 	}
 	</style>
 </head>
+<a href='<?php echo base_url();?>/index.php/Login/admin'> Atras </a>
 <body>
 	            <form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/EdicionPost/Nuevo">
             <input name="submit" value="+ Agregar Nuevo Post" type="submit">
@@ -81,7 +80,7 @@
 <?php
 
 // Mostramos solo los 11 primeros caracteres por ejemplo: "En un lugar"
-$texto= substr($entry['post'], 0, 100);
+$texto= substr($entry['post'], 0, 150);
 echo $texto.'...'; 
 ?>		
 </a> 

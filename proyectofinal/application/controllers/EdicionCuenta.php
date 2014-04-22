@@ -66,8 +66,6 @@ class EdicionCuenta extends CI_Controller {
 
 		}	
 	}
-
-	
 	public function error() 
 	{
 		echo "Error 404, try again later";

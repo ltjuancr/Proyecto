@@ -57,6 +57,22 @@ class Login extends CI_Controller {
          $this->load->view('vista_login',$data);
 		}
 	}
+    public function logear()
+	{
+$this->load->model('Login_model');
+		$data['user']= $this->Login_model->getinfo();
+		$nombre=$data['user'];
+		$this->Login_model->log($nombre->nombre);
+
+		redirect('http://localhost/proyectofinal/', 'refresh');
+	}
+
+	    public function admin()
+	{
+		  $this->load->view('administracion_view');
+
+	}
+
 
 	public function error() 
 	{

@@ -41,14 +41,46 @@ class Post extends CI_Controller {
 
 		$autor =$this->input->post('nombre');
 		$comment =$this->input->post('comentario');
+        $blog = $data['user'];
+            $blog = $blog->nombre_blog;
 
 
 		if(($autor != '')&&($comment != '')){
        
      $this->comments_model->get($id_post,$autor,$comment);
 
-		}
+     //correo
+     include("C:/xampp/htdocs/proyectofinal/application/email/class.phpmailer.php"); 
+     include("C:/xampp/htdocs/proyectofinal/application/email/class.smtp.php"); 
+     $mail = new PHPMailer(); 
+     $mail->IsSMTP(); 
+     $mail->SMTPAuth = true; 
+     $mail->SMTPSecure = "ssl"; 
+     $mail->Host = 'smtp.gmail.com'; 
+     $mail->Port = 465; 
+     $mail->Username = 'juanquirosgonzalez@gmail.com'; 
+     $mail->Password = 'juan1243';
 
+
+
+     $mail->From = 'juanquirosgonzalez@gmail.com'; 
+     $mail->FromName = "Server"; 
+     $mail->Subject = "Mensaje del Blog ".$blog; 
+     $mail->AltBody = "Este es un mensaje"; 
+     $mail->MsgHTML("En el Post ".$id_post.' tiene un nuevo mensaje de '.$autor); 
+     $mail->AddAttachment(""); 
+     $mail->AddAttachment(""); 
+     $mail->AddAddress('juan_gonzalez93@hotmail.com', "juan quiros gonzalez"); 
+     $mail->IsHTML(true); 
+
+  if(!$mail->Send()) { 
+ echo "Error: " . $mail->ErrorInfo; 
+ } else { 
+ echo ""; 
+ }
+}else{
+	 echo "Comentario inválido necesita llenar todos los campos ";
+}
 		$this->load->view('vista_post', $data);	
 	}
 

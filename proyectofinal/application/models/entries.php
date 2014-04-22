@@ -40,8 +40,9 @@ class Entries extends CI_Model {
 
         $query = $this->db->query("$consulta");
         return $query->result_array();
-
     }
+
+
 
 
 

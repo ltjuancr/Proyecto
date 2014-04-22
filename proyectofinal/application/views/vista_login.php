@@ -10,12 +10,10 @@
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+body
+{
+background-color:#d0e4fe;
+}
 
 	a {
 		color: #003399;
@@ -79,12 +77,14 @@
              	echo '<h1>'.$mensaje.'</h1>';
              }
              ?>
-
+<center>
                 Nombre: <input type="text" name="nombre" id="nombre">
+                <br>
             Contraseña: <input type="password" name="clave" id="clave">
+            <br>
             <input name="reset" value="Linpiar" type="reset">
             <input name="submit" value="Ingresar" type="submit">
-
+ </center>
 </form>
 
 </body>

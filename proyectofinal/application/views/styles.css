@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Agregando Post</title>
 
-	<style type="text/css">
-
-	body
-{
-background-color:#d0e4fe;
-}
 
 	::selection{ background-color: #E13300; color: white; }
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
 
-	body
-{
-background-color:#d0e4fe;
-}
+	body {
+		background-color: #fff;
+		margin: 40px;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+	}
 
 	a {
 		color: #003399;
@@ -65,36 +56,3 @@ background-color:#d0e4fe;
 		border: 1px solid #D0D0D0;
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
-	</style>
-
-	
-</head>
-<body>
-	<a href="http://localhost/proyectofinal//index.php/EdicionPost">Atras</a>
-
-<div id="container" style="height: 800px;">
-
-	
-
-<center>
-			<form  method="POST" name="formulario" action="<?php echo base_url();?>/index.php/EdicionPost/Agregar">
-
-            Post: 
-            <br>
-            <textarea name="post" rows="10" cols="40"> Ingrese su Post Aqui</textarea>
-            <br>
-
-            Fecha: <input type="text" name="fecha" value="<?php date_default_timezone_set("America/Costa_Rica");      
-            $fecha = date("Y").'-'.date("m").'-'.date("d");  echo  $fecha; ?> " readonly = "readonly">
-            <br>
-            <input name="submit" value="Agregar Post" type="submit">
-            <br>
-           </form>
-</center>
-		
-	
-
-</div>
-
-</body>
-</html>

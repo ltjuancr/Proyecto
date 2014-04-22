@@ -10,12 +10,10 @@
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+	body
+{
+background-color:#d0e4fe;
+}
 
 	a {
 		color: #003399;
@@ -65,6 +63,7 @@
 	</style>
 </head>
 <body>
+<a href="http://localhost/proyectofinal//index.php/EdicionPost">Atras</a>
 
 <div id="container" style="height: 800px;">
 
