@@ -11,8 +11,11 @@ class Entries extends CI_Model {
     function getAllpost()
     {       
         
-        $query = $this->db->get('post');
+     $consulta="SELECT * FROM `post` ORDER BY id_post DESC";
+
+        $query = $this->db->query("$consulta");
         return $query->result_array();
+
            
     }
 

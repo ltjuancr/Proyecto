@@ -21,16 +21,32 @@ class EdicionCuenta extends CI_Controller {
 	{
 		$this->load->model('EditarCuenta');
 		$data['user'] = $this->EditarCuenta->getinfo();	
-		$this->load->view('EdicionCuenta_view', $data);		
+		 $user= $data['user'];
+		if($user->estado == '1'){
+		$this->load->view('EdicionCuenta_view', $data);
+		}else{
+			$data['mensaje']= 'Administrador no Logeado';
+        $this->load->view('vista_login', $data);
+		}		
 	}
 
 		public function editar()
 	{
 		$this->load->model('EditarCuenta');
+		$data['user'] = $this->EditarCuenta->getinfo();	
+        $data['mensaje']= 'Administrador no Logeado';
+
+ $user= $data['user'];
+		if($user->estado == '1'){
 
 		$nombre =$this->input->post('nombre');
 		$apellidos =$this->input->post('apellidos');
 		$clave =$this->input->post('clave');
+
+     $this->load->library('encrypt');
+     $msg = $clave;
+     $clave = $this->encrypt->encode($msg);
+
 		$descripcion =$this->input->post('descripcion');
 		$nombre_blog =$this->input->post('nombre_blog');
 		$red1 =$this->input->post('red1');
@@ -42,8 +58,13 @@ class EdicionCuenta extends CI_Controller {
 
 		}
 
-		$data['user'] = $this->EditarCuenta->getinfo();	
-		$this->load->view('EdicionCuenta_view', $data);		
+		
+		$this->load->view('EdicionCuenta_view', $data);	
+		}else{
+			$data['mensaje']= 'Administrador no Logeado';
+                 $this->load->view('vista_login', $data);
+
+		}	
 	}
 
 	

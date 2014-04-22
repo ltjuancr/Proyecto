@@ -30,6 +30,13 @@ class EditarComentarios_model extends CI_Model {
         $this->db->update('comentarios', $data);     
     }
 
+             function getinfo()
+    {       
+        
+        $query = $this->db->get('user');
+        return $query->row();          
+    }
+
 
 
 

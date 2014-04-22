@@ -20,14 +20,26 @@ class EdicionComentarios extends CI_Controller {
 	public function Edicion($id_post)
 	{
 		$this->load->model('EditarComentarios_model');
+$data['user'] = $this->EditarComentarios_model->getinfo();	
+		 $user= $data['user'];
+		if($user->estado == '1'){	
 		$data['id_post']=$id_post;
 		$data['comentarios'] = $this->EditarComentarios_model->getcomments($id_post);	
-		$this->load->view('EdicionComentario', $data);		
+		$this->load->view('EdicionComentario', $data);	
+			}else{
+				$data['mensaje']= 'Administrador no Logeado';
+        $this->load->view('vista_login', $data);
+		}	
 	}
 
 	public function Editando($id_post)
 	{
+		$data['mensaje']= 'Administrador no Logeado';
 		$this->load->model('EditarComentarios_model');
+		$data['user'] = $this->EditarComentarios_model->getinfo();	
+		 $user= $data['user'];
+		if($user->estado == '1'){
+
         $data['id_post']=$id_post;
 		$estado =$this->input->post('submit');
 		$id_comentario =$this->input->post('id');
@@ -41,7 +53,11 @@ class EdicionComentarios extends CI_Controller {
 
 		$data['comentarios'] = $this->EditarComentarios_model->getcomments($id_post);	
 
-		$this->load->view('EdicionComentario', $data);		
+		$this->load->view('EdicionComentario', $data);
+	}else{
+		$data['mensaje']= 'Administrador no Logeado';
+        $this->load->view('vista_login', $data);
+		}		
 	}
 	
 

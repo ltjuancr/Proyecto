@@ -21,6 +21,17 @@ class Login_model extends CI_Model {
         return $query->row();          
     }
 
+    function logear($nombre,$clave)
+    {    
+
+           $data = array(
+            'estado' => '1'
+        );
+
+        $this->db->where('nombre', $nombre);
+        $this->db->update('user', $data);     
+    }
+
 }
 
 

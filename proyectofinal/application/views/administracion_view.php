@@ -1,5 +1,6 @@
 <html>
 <head>
+	<a href="<?php echo base_url();?>">Logear</a>
 	<title>Administrativo</title>
 </head>
 <body>

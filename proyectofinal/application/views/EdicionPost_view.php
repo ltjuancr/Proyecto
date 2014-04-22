@@ -77,7 +77,15 @@
 			<div>
             <br>
            Post numero : <?php echo $entry['id_post'] ?>
-            <a href="<?php echo base_url();?>/index.php/EdicionPost/editar/<?php echo $entry['id_post'] ?>"><?php echo $entry['post'] ?></a>
+            <a href="<?php echo base_url();?>/index.php/EdicionPost/editar/<?php echo $entry['id_post'] ?>">
+<?php
+
+// Mostramos solo los 11 primeros caracteres por ejemplo: "En un lugar"
+$texto= substr($entry['post'], 0, 100);
+echo $texto.'...'; 
+?>		
+</a> 
+<h1 align="right"><?php echo $entry['fecha'] ?></h1>
             <br>
 			</div>
 		    <?php endforeach; ?>

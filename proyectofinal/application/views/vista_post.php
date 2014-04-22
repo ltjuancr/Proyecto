@@ -65,7 +65,7 @@
 	</style>
 </head>
 <body>
-
+  <a href="<?php echo base_url();?>">Atras</a>
 <div id="container" style="height: 800px;">
 <center>
 	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>

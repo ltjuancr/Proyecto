@@ -75,7 +75,15 @@
 			<div>
 			<h2><?php echo $entry['id_post'] ?> </h2>	
 			<p>
-				<a href="http://localhost/proyectofinal/index.php/Post/index/<?php echo $entry['id_post'] ?>"><?php echo $entry['post'] ?> </a> 
+				<a href="http://localhost/proyectofinal/index.php/Post/index/<?php echo $entry['id_post'] ?>">
+<?php
+
+// Mostramos solo los 11 primeros caracteres por ejemplo: "En un lugar"
+$texto= substr($entry['post'], 0, 100);
+echo $texto.'...'; 
+?>		
+</a> 
+<h4 align="right"><?php echo $entry['fecha'] ?></h4>
 			</p>
 			</div>
 		<?php endforeach; ?>

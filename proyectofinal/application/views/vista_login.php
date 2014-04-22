@@ -65,7 +65,7 @@
 	</style>
 </head>
 <body>
-
+<a href="<?php echo base_url();?>"> Atras </a>
 <div id="container" style="height: 800px;">
 <center>
 	<h1>Welcome to <?php  echo  $user->nombre_blog; ?></h1>
@@ -74,6 +74,9 @@
 <form  method="POST" name="formulario" action="<?php echo base_url();?>index.php/login/authenticate">
              <?php if($mensaje == 'Error'){
                 echo '<h1>'.$mensaje.' ... Usuario o Contraseña incorrecta</h1>';
+             }else{
+
+             	echo '<h1>'.$mensaje.'</h1>';
              }
              ?>
 

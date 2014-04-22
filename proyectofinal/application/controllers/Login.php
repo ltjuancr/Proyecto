@@ -33,15 +33,25 @@ class Login extends CI_Controller {
     $this->load->model('Login_model');
 	$usuario =$this->input->post('nombre');
 	$clave =$this->input->post('clave');
-
-    $data['user'] = $this->Login_model->authenticate($usuario,$clave);
+	$data['user']= $this->Login_model->getinfo();
     
-		if($data['user']){
+    //$this->load->library('encrypt');
+   // $msg = $clave;
+    //$encrypted_string = $this->encrypt->encode($msg);
+  $admin=$data['user'];
+  
+    $this->load->library('encrypt');
+   $encrypted_string = $admin->clave;
+   $plaintext_string = $this->encrypt->decode($encrypted_string);
+    
+		if(($plaintext_string == $clave)&&( $admin->nombre == $usuario)){
+			$this->Login_model->logear($usuario,$clave);
          $this->load->view('administracion_view', $data);
+
 		}else{
 
 		 
-		 $data['user']= $this->Login_model->getinfo();
+		 
 		 $data['mensaje'] = 'Error';
          //$this->load->view('vista_login', $data);
          $this->load->view('vista_login',$data);
